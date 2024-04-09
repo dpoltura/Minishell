@@ -6,11 +6,33 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:17:00 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 11:55:55 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:31:52 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	ft_echo_arg(char *src, char *cmp)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (src[i] && cmp[j] && src[i] == cmp[j])
+	{
+		i++;
+		j++;
+	}
+	if (!cmp[j])
+	{
+		while (src[i] == 'n')
+			i++;
+		if (!src[i])
+			return (1);
+	}
+	return (0);
+}
 
 void	echo(t_split *split)
 {
@@ -26,7 +48,7 @@ void	echo(t_split *split)
 		return ;
 	else if (cursor)
 		cursor = cursor->next;
-	if (cursor && ft_strcmp(cursor->content, "-n"))
+	if (cursor && ft_echo_arg(cursor->content, "-n"))
 	{
 		c[0] = 0;
 		cursor = cursor->next;

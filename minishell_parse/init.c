@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pipe.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 13:05:57 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:48:33 by dpoltura         ###   ########.fr       */
+/*   Created: 2024/04/09 10:44:34 by dpoltura          #+#    #+#             */
+/*   Updated: 2024/04/09 10:47:17 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*check_pipe(t_split *split, char *line)
+void	init_split(t_split **split)
 {
-	t_split	*cursor;
-	char	*msg;
-	int	i;
-
-	cursor = split;
-	i = 0;
-	while (cursor)
-	{
-		while (cursor->content[i] == '|')
-			i++;
-		if (i > 2 || (cursor->index == 1 && i > 0))
-		{
-			msg = ft_strdup("minishell: syntax error");
-			printf("%s\n", msg);
-			free(msg);
-			free_split(split);
-			free(line);
-			exit(2);
-		}
-		cursor = cursor->next;
-		i = 0;
-	}
-	return (NULL);
+	*split = malloc(sizeof(t_split));
+	(*split)->index = 0;
+	(*split)->content = NULL;
+	(*split)->next = NULL;
 }

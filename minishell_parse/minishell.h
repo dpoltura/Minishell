@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:20:55 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:39:53 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:47:29 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	*check_pipe(t_split *split, char *line);
 void	index_split(t_split	*split);
 int	count_split(t_split *split);
 void	check_chev(t_split *split, char *line);
+void	init_split(t_split **split);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:20:24 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:49:47 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:32:03 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,18 @@ int	main(int argc, char **argv, char **env)
 	t_split	*split;
 	char	*line;
 
-	init_split(&split);
-	line = readline("> ");
-	split_line(split, line);
-	index_split(split);
-	check_pipe(split, line);
-	check_chev(split, line);
-	print_split(split);
-	free_split(split);
-	free(line);
+	while (1)
+	{
+		init_split(&split);
+		line = readline("minishell$ ");
+		split_line(split, line);
+		index_split(split);
+		check_pipe(split, line);
+		check_chev(split, line);
+		print_split(split);
+		echo(split);
+		free_split(split);
+		free(line);
+	}
 	return (0);
 }

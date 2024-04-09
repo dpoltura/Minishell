@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:51:45 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:44:49 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:43:37 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,21 @@ int	count_split(t_split *split)
 		i++;
 	}
 	return (i);
+}
+
+int	ft_strcmp(char *src, char *cmp)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (src[i] && cmp[j] && src[i] == cmp[j])
+	{
+		i++;
+		j++;
+	}
+	if (!src[i] && !cmp[j])
+		return (1);
+	return (0);
 }

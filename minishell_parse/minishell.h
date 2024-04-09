@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:20:55 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:12:55 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:39:53 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	split_line(t_split *split, char *line);
 void	free_split(t_split *split);
 char	*ft_strdup(const char *src);
-char	*check_pipe(t_split *split, char *line);
+void	*check_pipe(t_split *split, char *line);
 void	index_split(t_split	*split);
+int	count_split(t_split *split);
+void	check_chev(t_split *split, char *line);
 
 #endif

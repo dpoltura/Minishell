@@ -6,7 +6,7 @@
 #    By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:21:23 by dpoltura          #+#    #+#              #
-#    Updated: 2024/03/28 13:31:13 by dpoltura         ###   ########.fr        #
+#    Updated: 2024/04/09 10:20:47 by dpoltura         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS =	minishell.c \
 		split_line.c \
 		utils.c \
 		free.c \
-		check_pipe.c
+		check_pipe.c \
+		check_chev.c
 
 OBJS = $(SRCS:%.c=%.o)
 

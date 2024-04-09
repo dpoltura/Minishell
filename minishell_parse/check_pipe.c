@@ -6,13 +6,13 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:05:57 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:16:39 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:22:27 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*check_pipe(t_split *split, char *line)
+void	*check_pipe(t_split *split, char *line)
 {
 	t_split	*cursor;
 	char	*msg;

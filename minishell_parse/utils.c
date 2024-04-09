@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:51:45 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 10:12:48 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:26:27 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,19 @@ void	index_split(t_split	*split)
 		cursor = cursor->next;
 		i++;
 	}
+}
+
+int	count_split(t_split *split)
+{
+	t_split	*cursor;
+	int	i;
+
+	cursor = split;
+	i = 0;
+	while (cursor)
+	{
+		cursor = cursor->next;
+		i++;
+	}
+	return (i);
 }

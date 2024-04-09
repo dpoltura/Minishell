@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:52:15 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 12:11:47 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:38:34 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 typedef struct s_split
 {
+	int	index;
 	char			*content;
 	struct s_split	*next;
 }					t_split;

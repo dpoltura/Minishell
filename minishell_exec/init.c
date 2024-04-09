@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:29:17 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/03/21 11:09:17 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:39:05 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	init_split_input(t_data **data)
 {
 	(*data)->split_input = malloc(sizeof(t_split));
+	(*data)->split_input->index = 0;
 	(*data)->split_input->content = NULL;
 	(*data)->split_input->next = NULL;
 }

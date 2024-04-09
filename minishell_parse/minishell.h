@@ -6,13 +6,14 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:20:55 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 12:07:53 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:43:58 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "colors.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -25,7 +26,6 @@ typedef struct	s_split
 	char	*content;
 	struct s_split	*next;
 }	t_split;
-
 
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);

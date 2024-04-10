@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/10 16:36:33 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:29:44 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,22 @@ int		main(void)
 	char	*input;
 
 	data = NULL;
-	input = readline("minishell$ ");
-	if (!input)
+	while (1)
 	{
+		input = readline("minishell$ ");
+		if (!input)
+		{
+			free(input);
+			exit(2);
+		}
+		init_data(&data);
+		split_input(input, data); // free
 		free(input);
-		exit(2);
+		index_data(data);
+		token_data(data);
+		
+		print_data(data);
+		free_data(&data);
 	}
-	init_data(&data);
-	split_input(input, data); // free
-	free(input);
-	index_data(data);
-	token_data(data);
-	
-	print_data(data);
-	free_data(&data);
 	return (0);
 }

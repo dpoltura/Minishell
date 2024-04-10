@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:20:25 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/10 15:02:01 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:01:00 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	if_r_chev(char *input, t_data *data, int i, int j)
 
 static int	if_dollar(char *input, t_data *data, int i, int j)
 {
-	while (input[i] == '$')
+	if (input[i] == '$')
 	{
 		data->value[j] = input[i];
 		i++;

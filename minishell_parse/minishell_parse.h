@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 13:45:11 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:56:31 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef enum	e_token
     UNSET,
     ENV,
     EXIT,
+    INFILE,
+    OUTFILE,
 }	t_token;
 
 typedef struct	s_data
@@ -65,5 +67,8 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 void    get_path(t_data *data);
+void	free_split(char **split);
+void	token_infile(t_data *data);
+void	token_outfile(t_data *data);
 
 #endif

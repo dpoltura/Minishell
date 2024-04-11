@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 13:26:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 14:06:48 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:23:29 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ void	get_path(t_data *data)
 		}
 		if (data)
 			data = data->next;
+		i = 0;
 	}
+	free_split(split_path);
 }

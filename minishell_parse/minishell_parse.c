@@ -6,11 +6,27 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 13:48:26 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:22:51 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
+
+static void	print_arg(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	if (!data || !data->arg)
+		return ;
+	printf("[ ");
+	while (data->arg[i])
+	{
+		printf("%s ", data->arg[i]);
+		i++;
+	}
+	printf("]");
+}
 
 static char	*print_token(int token)
 {
@@ -18,40 +34,44 @@ static char	*print_token(int token)
 
 	if (token == 0)
 		name = strdup("EMPTY");
-	else if (token == 1)
+	if (token == 1)
 		name = strdup("S_QUOTE");
-	else if (token == 2)
+	if (token == 2)
 		name = strdup("D_QUOTE");
-    else if (token == 3)
+    if (token == 3)
 		name = strdup("CMD");
-    else if (token == 4)
+    if (token == 4)
 		name = strdup("PIPE");
-    else if (token == 5)
+    if (token == 5)
 		name = strdup("L_CHEV");
-    else if (token == 6)
+    if (token == 6)
 		name = strdup("R_CHEV");
-	else if (token == 7)
+	if (token == 7)
 		name = strdup("D_L_CHEV");
-    else if (token == 8)
+    if (token == 8)
 		name = strdup("D_R_CHEV");
-    else if (token == 9)
+    if (token == 9)
 		name = strdup("DOLLAR");
-	else if (token == 10)
+	if (token == 10)
 		name = strdup("ARG");
-    else if (token == 11)
+    if (token == 11)
 		name = strdup("ECHO");
-	else if (token == 12)
+	if (token == 12)
 		name = strdup("CD");
-	else if (token == 13)
+	if (token == 13)
 		name = strdup("PWD");
-    else if (token == 14)
+    if (token == 14)
 		name = strdup("EXPORT");
-    else if (token == 15)
+    if (token == 15)
 		name = strdup("UNSET");
-	else if (token == 16)
+	if (token == 16)
 		name = strdup("ENV");
     if (token == 17)
 		name = strdup("EXIT");
+	if (token == 18)
+		name = strdup("INFILE");
+    if (token == 19)
+		name = strdup("OUTFILE");
 	return (name);
 }
 
@@ -64,15 +84,10 @@ static void	print_data(t_data *data)
 	while (data)
 	{
 		token = print_token(data->token);
-		printf("[ %d ][ %s ][ %s ][ %s ]", data->index, data->value, token, data->path);
-		while (data->arg && data->arg[i])
-		{
-			printf("[ %s ]", data->arg[i]);
-			i++;
-			if (data->arg[i] == NULL)
-				printf("[ ARG ]");
-		}
-		printf("\n");
+		printf("[ %d ][ %s ]", data->index, data->value);
+		print_arg(data);
+		printf("[ %s ]", token);
+		printf("[ %s ]\n", data->path);
 		data = data->next;
 		free(token);
 		i = 0;
@@ -100,6 +115,8 @@ int		main(void)
 		token_data(data);
 		arg_to_cmd(data);
 		get_path(data);
+		token_infile(data);
+		token_outfile(data);
 		
 		print_data(data);
 		free_data(&data);

@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:50:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/10 16:49:42 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:17:35 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,4 +310,32 @@ void	token_data(t_data *data)
 	token_env(data);
 	token_exit(data);
 	token_cmd(data);
+}
+
+void	token_infile(t_data *data)
+{
+	t_data	*cursor;
+	
+	cursor = data;
+	while (cursor)
+	{
+		if ((cursor->token == L_CHEV || cursor->token == D_L_CHEV || cursor->token == CMD)
+			&& (cursor->next && cursor->next->token == CMD && !cursor->next->path))
+			cursor->next->token = INFILE;
+		cursor = cursor->next;
+	}
+}
+
+void	token_outfile(t_data *data)
+{
+	t_data	*cursor;
+	
+	cursor = data;
+	while (cursor)
+	{
+		if ((cursor->token == R_CHEV || cursor->token == D_R_CHEV)
+			&& (cursor->next && cursor->next->token == CMD && !cursor->next->path))
+			cursor->next->token = OUTFILE;
+		cursor = cursor->next;
+	}
 }

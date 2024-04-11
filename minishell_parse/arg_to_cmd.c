@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:51:14 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 13:20:06 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:40:11 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	arg_to_cmd(t_data *data)
 	t_data	*tmp;
 	int		i;
 	
-	i = 1;
 	while (data)
 	{
+		i = 1;
 		while (data->next && data->next->token != ARG)
 			data = data->next;
 		if (!data || !data->next)
@@ -44,6 +44,5 @@ void	arg_to_cmd(t_data *data)
 			i++;
 		}
 		cmd->arg[i] = NULL;
-		i = 1;
 	}
 }

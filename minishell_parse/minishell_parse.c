@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 15:22:51 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:45:33 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ static void	print_arg(t_data *data)
 	i = 0;
 	if (!data || !data->arg)
 		return ;
-	printf("[ ");
+	printf(ANSI_BLUE"char "ANSI_RED"**"ANSI_CYAN"arg "ANSI_RED"= "ANSI_WHITE);
 	while (data->arg[i])
 	{
-		printf("%s ", data->arg[i]);
+		printf("%s", data->arg[i]);
 		i++;
+		if (data->arg[i])
+			printf(", ");
+		else
+			printf(";");
 	}
-	printf("]");
+	printf("\n\t");
 }
 
 static char	*print_token(int token)
@@ -84,11 +88,17 @@ static void	print_data(t_data *data)
 	while (data)
 	{
 		token = print_token(data->token);
-		printf("[ %d ][ %s ]", data->index, data->value);
+		printf(ANSI_RED"\ntypedef "ANSI_BLUE"struct\t"ANSI_GREEN"s_data\n");
+		printf(ANSI_YELLOW"{");
+		printf("\n\t"ANSI_BLUE"int "ANSI_CYAN"index "ANSI_RED"= "ANSI_WHITE"%d;\n\t", data->index);
+		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"value "ANSI_RED"= "ANSI_WHITE"%s;\n\t", data->value);
 		print_arg(data);
-		printf("[ %s ]", token);
-		printf("[ %s ]\n", data->path);
+		printf(ANSI_GREEN"t_token "ANSI_CYAN"token "ANSI_RED"= "ANSI_WHITE"%s;\n\t", token);
+		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"path "ANSI_RED"= "ANSI_WHITE"%s;\n", data->path);
+		printf(ANSI_YELLOW"}\n"ANSI_WHITE);
 		data = data->next;
+		if (!data)
+			printf("\n");
 		free(token);
 		i = 0;
 	}

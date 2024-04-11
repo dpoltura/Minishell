@@ -6,14 +6,30 @@
 /*   By: aduriez <aduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/11 16:51:38 by aduriez          ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2024/04/11 14:56:31 by dpoltura         ###   ########.fr       */
+=======
+/*   Updated: 2024/04/11 16:25:21 by dpoltura         ###   ########.fr       */
+>>>>>>> Donovan
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_PARSE_H
 # define MINISHELL_PARSE_H
 
+<<<<<<< HEAD
 # include <fcntl.h>
+=======
+# include "colors.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <readline/readline.h>
+>>>>>>> refs/remotes/origin/main
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:13:00 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/10 17:19:26 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:53:45 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_data(t_data **data)
 		exit(2);
     (*data)->arg = NULL;
     (*data)->token = EMPTY;
+	(*data)->path = NULL;
     (*data)->prev = NULL;
     (*data)->next = NULL;
 }

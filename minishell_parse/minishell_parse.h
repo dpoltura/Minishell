@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/10 18:00:10 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:05:15 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_data
     char	*value;
     char	**arg;
     t_token	token;
+    char    *path;
     struct s_data	*prev;
     struct s_data	*next;
 }	t_data;
@@ -57,5 +58,8 @@ void	free_data(t_data **data);
 void	index_data(t_data *data);
 void	token_data(t_data *data);
 int		ft_strcmp(char *src, char *cmp);
+char    *ft_strdup(const char *s);
+void	arg_to_cmd(t_data *data);
+size_t  ft_strlen(const char *s);
 
 #endif

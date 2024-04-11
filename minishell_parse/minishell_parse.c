@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/10 17:29:44 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:27:31 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,24 @@ static char	*print_token(int token)
 static void	print_data(t_data *data)
 {
 	char	*token;
+	int		i;
 	
+	i = 0;
 	while (data)
 	{
 		token = print_token(data->token);
-		printf("[ %d ][ %s ][ %s ]\n", data->index, data->value, token);
+		printf("[ %d ][ %s ][ %s ]", data->index, data->value, token);
+		while (data->arg && data->arg[i])
+		{
+			printf("[ %s ]", data->arg[i]);
+			i++;
+			if (data->arg[i] == NULL)
+				printf("[ ARG ]");
+		}
+		printf("\n");
 		data = data->next;
 		free(token);
+		i = 0;
 	}
 }
 
@@ -87,6 +98,7 @@ int		main(void)
 		free(input);
 		index_data(data);
 		token_data(data);
+		arg_to_cmd(data);
 		
 		print_data(data);
 		free_data(&data);

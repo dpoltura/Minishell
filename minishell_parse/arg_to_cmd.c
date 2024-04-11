@@ -6,15 +6,22 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:51:14 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 12:41:52 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:20:06 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
 
+static void	free_data_arg(t_data *data)
+{
+	free(data->value);
+	free(data);
+}
+
 void	arg_to_cmd(t_data *data)
 {
 	t_data	*cmd;
+	t_data	*tmp;
 	int		i;
 	
 	i = 1;
@@ -27,10 +34,13 @@ void	arg_to_cmd(t_data *data)
 		cmd = data;
 		cmd->arg = malloc(sizeof(char *) * 255);
 		cmd->arg[0] = ft_strdup(cmd->value);
-		while (data->next && data->next->token == ARG)
+		tmp = data->next;
+		while (tmp && tmp->token == ARG)
 		{
-			cmd->arg[i] = ft_strdup(data->next->value);
-			data = data->next;
+			cmd->arg[i] = ft_strdup(tmp->value);
+			data->next = data->next->next;
+			free_data_arg(tmp);
+			tmp = data->next;
 			i++;
 		}
 		cmd->arg[i] = NULL;

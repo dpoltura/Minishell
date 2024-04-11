@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 13:04:38 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:45:11 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,9 @@ int		ft_strcmp(char *src, char *cmp);
 char    *ft_strdup(const char *s);
 void	arg_to_cmd(t_data *data);
 size_t  ft_strlen(const char *s);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+void    get_path(t_data *data);
 
 #endif

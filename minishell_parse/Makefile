@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+         #
+#    By: aduriez <aduriez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 17:09:10 by dpoltura          #+#    #+#              #
-#    Updated: 2024/04/11 13:46:34 by dpoltura         ###   ########.fr        #
+#    Updated: 2024/04/11 16:12:03 by aduriez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS =	minishell_parse.c \
 		ft_split.c \
 		ft_strjoin.c \
 		ft_substr.c \
+		ft_exceve.c
 		
 
 OBJS = $(SRCS:%.c=%.o)

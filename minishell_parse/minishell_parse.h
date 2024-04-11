@@ -6,13 +6,18 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/11 14:56:31 by dpoltura         ###   ########.fr       */
+=======
+/*   Updated: 2024/04/11 16:25:21 by dpoltura         ###   ########.fr       */
+>>>>>>> Donovan
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_PARSE_H
 # define MINISHELL_PARSE_H
 
+# include "colors.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>

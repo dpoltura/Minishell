@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:49:35 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:59:55 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,25 +112,30 @@ int		main(void)
 	data = NULL;
 	while (1)
 	{
-		input = ft_readline();
-		if (!input)
+		while (1)
 		{
+			input = ft_readline();
+			if (!input)
+			{
+				free(input);
+				exit(2);
+			}
+			init_data(&data);
+			split_input(input, data);
 			free(input);
-			exit(2);
+			index_data(data);
+			if (token_data(data) != 1)
+				break ;
+			arg_to_cmd(data);
+			get_path(data);
+			token_infile(data);
+			token_outfile(data);
+			if (check_first(data) != 1)
+				break ;
+			
+			print_data(data);
+			free_data(&data);
 		}
-		init_data(&data);
-		split_input(input, data);
-		free(input);
-		index_data(data);
-		token_data(data);
-		arg_to_cmd(data);
-		get_path(data);
-		token_infile(data);
-		token_outfile(data);
-		check_first(data);
-		
-		print_data(data);
-		free_data(&data);
 	}
 	return (0);
 }

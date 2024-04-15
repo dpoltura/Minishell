@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:45:37 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:58:30 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_data(t_data **data);
 void	split_input(char *input, t_data *data);
 void	free_data(t_data **data);
 void	index_data(t_data *data);
-void	token_data(t_data *data);
+int 	token_data(t_data *data);
 int		ft_strcmp(char *src, char *cmp);
 char    *ft_strdup(const char *s);
 void	arg_to_cmd(t_data *data);
@@ -71,7 +71,7 @@ void    get_path(t_data *data);
 void	free_split(char **split);
 void	token_infile(t_data *data);
 void	token_outfile(t_data *data);
-void    check_first(t_data *data);
+int     check_first(t_data *data);
 char	*ft_readline(void);
 
 #endif

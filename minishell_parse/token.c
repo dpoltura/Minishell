@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:50:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:48:09 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:58:20 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		if_pipe(char *value)
 	return (i);
 }
 
-static void	token_pipe(t_data *data)
+static int	token_pipe(t_data *data)
 {
 	t_data	*cursor;
 	
@@ -35,10 +35,11 @@ static void	token_pipe(t_data *data)
 		{
 			free_data(&data);
 			printf(ANSI_BOLDRED"minishell: syntax error `|'\n"ANSI_RESET);
-			exit(2);
+			return (2);
 		}
 		cursor = cursor->next;
 	}
+	return (1);
 }
 
 static int		if_l_chev(char *value)
@@ -51,7 +52,7 @@ static int		if_l_chev(char *value)
 	return (i);
 }
 
-static void	token_l_chev(t_data *data)
+static int	token_l_chev(t_data *data)
 {
 	t_data	*cursor;
 	
@@ -66,10 +67,11 @@ static void	token_l_chev(t_data *data)
 		{
 			free_data(&data);
 			printf(ANSI_BOLDRED"minishell: syntax error `<'\n"ANSI_RESET);
-			exit(2);
+			return (2);
 		}
 		cursor = cursor->next;
 	}
+	return (1);
 }
 
 static int		if_r_chev(char *value)
@@ -82,7 +84,7 @@ static int		if_r_chev(char *value)
 	return (i);
 }
 
-static void	token_r_chev(t_data *data)
+static int	token_r_chev(t_data *data)
 {
 	t_data	*cursor;
 	
@@ -97,10 +99,11 @@ static void	token_r_chev(t_data *data)
 		{
 			free_data(&data);
 			printf(ANSI_BOLDRED"minishell: syntax error `>'\n"ANSI_RESET);
-			exit(2);
+			return (2);
 		}
 		cursor = cursor->next;
 	}
+	return (1);
 }
 
 static int		if_s_quote(char *value)
@@ -296,13 +299,16 @@ static void	token_cmd(t_data *data)
 	}
 }
 
-void	token_data(t_data *data)
+int	token_data(t_data *data)
 {
 	token_s_quote(data);
 	token_d_quote(data);
-	token_pipe(data);
-	token_l_chev(data);
-	token_r_chev(data);
+	if (token_pipe(data) != 1)
+		return (2);
+	if (token_l_chev(data) != 1)
+		return (2);
+	if (token_r_chev(data) != 1)
+		return (2);
 	token_dollar(data);
 	token_arg(data);
 	token_echo(data);
@@ -313,6 +319,7 @@ void	token_data(t_data *data)
 	token_env(data);
 	token_exit(data);
 	token_cmd(data);
+	return (1);
 }
 
 void	token_infile(t_data *data)

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 17:13:00 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 18:41:15 by dpoltura         ###   ########.fr       */
+/*   Created: 2024/04/15 15:03:17 by dpoltura          #+#    #+#             */
+/*   Updated: 2024/04/15 18:03:28 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
 
-void	init_data(t_data **data)
+void	ft_execve(t_data *data, char **envp)
 {
-	*data = malloc(sizeof(t_data));
-	if (!(*data))
-		exit(2);
-    (*data)->index = 0;
-	(*data)->value = NULL;
-    (*data)->arg = NULL;
-    (*data)->token = EMPTY;
-	(*data)->path = NULL;
-    (*data)->next = NULL;
+	int	pid;
+	pid = fork();
+	if (!pid && data->token == CMD)
+		execve(data->path, data->arg, envp);
+	waitpid(pid, NULL, 0);
 }

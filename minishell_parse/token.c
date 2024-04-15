@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:50:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:58:20 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:50:08 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,7 +329,7 @@ void	token_infile(t_data *data)
 	cursor = data;
 	while (cursor)
 	{
-		if ((cursor->token == L_CHEV || cursor->token == D_L_CHEV || cursor->token == CMD)
+		if ((cursor->token == L_CHEV || cursor->token == D_L_CHEV || cursor->token == CMD || cursor->token == ARG)
 			&& (cursor->next && cursor->next->token == CMD && !cursor->next->path))
 			cursor->next->token = INFILE;
 		cursor = cursor->next;

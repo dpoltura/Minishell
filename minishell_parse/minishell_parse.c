@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 14:42:09 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:42:31 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,14 @@ int		main(int argc, char **argv, char **envp)
 	argv = NULL;
 	
 	t_env	*env;
+	char	**env_tab;
 	char	*input;
 	t_data	*data;
 
 	env = NULL;
 	init_env(&env);
 	env_copy(env, envp);
+	env_tab = envp;
 	data = NULL;
 	while (1)
 	{
@@ -127,19 +129,21 @@ int		main(int argc, char **argv, char **envp)
 				free(input);
 				break ;
 			}
+			add_history(input);
 			init_data(&data);
 			split_input(input, data);
 			free(input);
 			index_data(data);
 			if (token_data(data) != 1)
 				break ;
-			arg_to_cmd(data);
 			get_path(data);
 			token_infile(data);
 			token_outfile(data);
+			arg_to_cmd(data);
 			if (check_first(data) != 1)
 				break ;
 			
+			ft_execve(data, env_tab);
 			print_data(data);
 			free_data(&data);
 		}

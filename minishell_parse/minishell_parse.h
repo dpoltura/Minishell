@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 14:42:01 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:12:22 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef enum	e_token
 {
@@ -82,5 +84,6 @@ char	*ft_readline(t_env *env);
 void	env_copy(t_env *env, char **envp);
 void	free_env(t_env **env);
 void	init_env(t_env **env);
+void	ft_execve(t_data *data, char **envp);
 
 #endif

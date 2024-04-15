@@ -6,11 +6,31 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:59:55 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:29:21 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
+
+static void	print_env(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	if (!data || !data->env)
+		return ;
+	printf(ANSI_BLUE"char "ANSI_RED"**"ANSI_CYAN"env "ANSI_RED"= "ANSI_WHITE);
+	while (data->env[i])
+	{
+		printf("%s", data->env[i]);
+		i++;
+		if (data->env[i])
+			printf(", ");
+		else
+			printf(";");
+	}
+	printf("\n\t");
+}
 
 static void	print_arg(t_data *data)
 {
@@ -94,7 +114,8 @@ static void	print_data(t_data *data)
 		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"value "ANSI_RED"= "ANSI_WHITE"%s;\n\t", data->value);
 		print_arg(data);
 		printf(ANSI_GREEN"t_token "ANSI_CYAN"token "ANSI_RED"= "ANSI_WHITE"%s;\n\t", token);
-		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"path "ANSI_RED"= "ANSI_WHITE"%s;\n", data->path);
+		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"path "ANSI_RED"= "ANSI_WHITE"%s;\n\t", data->path);
+		print_env(data);
 		printf(ANSI_YELLOW"}\n"ANSI_WHITE);
 		data = data->next;
 		if (!data)
@@ -104,8 +125,11 @@ static void	print_data(t_data *data)
 	}
 }
 
-int		main(void)
+int		main(int argc, char **argv, char **envp)
 {
+	(void)argc;
+	argv = NULL;
+	
 	t_data	*data;
 	char	*input;
 
@@ -132,6 +156,7 @@ int		main(void)
 			token_outfile(data);
 			if (check_first(data) != 1)
 				break ;
+			init_env(data, envp);
 			
 			print_data(data);
 			free_data(&data);

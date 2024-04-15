@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:58:30 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:18:27 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_data
     char	**arg;
     t_token	token;
     char    *path;
-    struct s_data	*prev;
+    char    **env;
     struct s_data	*next;
 }	t_data;
 
@@ -73,5 +73,6 @@ void	token_infile(t_data *data);
 void	token_outfile(t_data *data);
 int     check_first(t_data *data);
 char	*ft_readline(void);
+void	init_env(t_data *data, char **envp);
 
 #endif

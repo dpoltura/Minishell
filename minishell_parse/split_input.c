@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:20:25 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 16:01:01 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:22:41 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ void	split_input(char *input, t_data *data)
 	j = 0;
 	while (input[i])
 	{
+		data->value = malloc(sizeof(char) * 255);
+		if (!data->value)
+			exit(2);
 		while (input[i] == ' ')
 			i++;
 		if (input[i] && input[i] != 34 && input[i] != 39 && input[i] != '|'

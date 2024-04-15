@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 12:46:32 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:19:55 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	print_env(t_data *data)
 	i = 0;
 	if (!data || !data->env)
 		return ;
+	printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"var "ANSI_RED"= "ANSI_WHITE"%s\n\t", data->var);
 	printf(ANSI_BLUE"char "ANSI_RED"**"ANSI_CYAN"env "ANSI_RED"= "ANSI_WHITE);
 	while (data->env[i])
 	{

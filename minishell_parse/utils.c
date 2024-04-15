@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:21:42 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 12:01:09 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:15:09 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char    *ft_strdup(const char *s)
         char    *str;
 
         i = 0;
+        if (!s)
+                return (NULL);
         str = malloc(sizeof(char) * (ft_strlen(s) + 1));
         if (str == NULL)
                 return (NULL);

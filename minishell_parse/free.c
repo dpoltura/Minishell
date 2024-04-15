@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:17:40 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 12:24:14 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:18:14 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	free_data(t_data **data)
 		free(current->value);
 		free_split(current->arg);
 		free(current->path);
+		free(current->var);
 		free_split(current->env);
 		free(current);
 		current = *data;

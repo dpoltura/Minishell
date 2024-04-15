@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 12:43:43 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:59:11 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_data
     char	**arg;
     t_token	token;
     char    *path;
+    char    *var;
     char    **env;
     struct s_data	*next;
 }	t_data;

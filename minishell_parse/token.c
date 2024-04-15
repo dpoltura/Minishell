@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:50:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 15:17:35 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:48:09 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	token_pipe(t_data *data)
 		else if (if_pipe(cursor->value) > 1)
 		{
 			free_data(&data);
+			printf(ANSI_BOLDRED"minishell: syntax error `|'\n"ANSI_RESET);
 			exit(2);
 		}
 		cursor = cursor->next;
@@ -64,6 +65,7 @@ static void	token_l_chev(t_data *data)
 		else if (if_l_chev(cursor->value) > 2)
 		{
 			free_data(&data);
+			printf(ANSI_BOLDRED"minishell: syntax error `<'\n"ANSI_RESET);
 			exit(2);
 		}
 		cursor = cursor->next;
@@ -94,6 +96,7 @@ static void	token_r_chev(t_data *data)
 		else if (if_r_chev(cursor->value) > 2)
 		{
 			free_data(&data);
+			printf(ANSI_BOLDRED"minishell: syntax error `>'\n"ANSI_RESET);
 			exit(2);
 		}
 		cursor = cursor->next;

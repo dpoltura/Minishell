@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/11 16:45:33 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:49:35 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int		main(void)
 	data = NULL;
 	while (1)
 	{
-		input = readline("minishell$ ");
+		input = ft_readline();
 		if (!input)
 		{
 			free(input);
@@ -127,6 +127,7 @@ int		main(void)
 		get_path(data);
 		token_infile(data);
 		token_outfile(data);
+		check_first(data);
 		
 		print_data(data);
 		free_data(&data);

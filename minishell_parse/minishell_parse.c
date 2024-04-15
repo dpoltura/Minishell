@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 12:29:21 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:46:32 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	print_env(t_data *data)
 		else
 			printf(";");
 	}
-	printf("\n\t");
+	printf("\n");
 }
 
 static void	print_arg(t_data *data)
@@ -139,11 +139,8 @@ int		main(int argc, char **argv, char **envp)
 		while (1)
 		{
 			input = ft_readline();
-			if (!input)
-			{
-				free(input);
-				exit(2);
-			}
+			if (!input || !input[0])
+				break ;
 			init_data(&data);
 			split_input(input, data);
 			free(input);

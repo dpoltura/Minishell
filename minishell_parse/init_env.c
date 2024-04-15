@@ -6,36 +6,45 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:58:32 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 13:17:32 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:32:23 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
 
-void	init_env(t_data *data, char **envp)
+void	init_env(t_env **env)
 {
-	t_data	*cursor;
+	*env = malloc(sizeof(t_env));
+	if (!(*env))
+		exit(2);
+	(*env)->key = NULL;
+	(*env)->value = NULL;
+	(*env)->next = NULL;
+}
+
+void	env_copy(t_env *env, char **envp)
+{
+	t_env	*cursor;
 	char	**tmp;
 	int		i;
 
-	cursor = data;
+	cursor = env;
 	i = 0;
 	while (envp[i])
 	{
-		cursor->env = ft_split(envp[i], ':');
+		cursor->value = ft_split(envp[i], ':');
 		if (envp[i + 1] && !cursor->next)
-			init_data(&cursor->next);
+			init_env(&cursor->next);
 		cursor = cursor->next;
 		i++;
 	}
-	cursor = data;
-	while (cursor && cursor->env)
+	cursor = env;
+	while (cursor && cursor->value)
 	{
-		tmp = ft_split(cursor->env[0], '=');
-		cursor->var = ft_strdup(tmp[0]);
-		free(cursor->env[0]);
-		cursor->env[0] = NULL;
-		cursor->env[0] = ft_strdup(tmp[1]);
+		tmp = ft_split(cursor->value[0], '=');
+		cursor->key = ft_strdup(tmp[0]);
+		free(cursor->value[0]);
+		cursor->value[0] = ft_strdup(tmp[1]);
 		free_split(tmp);
 		cursor = cursor->next;
 	}

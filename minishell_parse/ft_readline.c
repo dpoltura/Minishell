@@ -6,18 +6,34 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:40:56 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 10:46:31 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:45:34 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
 
-char	*ft_readline(void)
+char	*ft_readline(t_env *env)
 {
 	char	*input;
+	char	*user;
+	char	*pwd;
 	
+	t_env   *head;
+
+    head = env;
+	while (!ft_strcmp(env->key, "USER"))
+        env = env->next;
+    user = env->value[0];
+    env = head;
+    while (!ft_strcmp(env->key, "PWD"))
+        env = env->next;
+    pwd = env->value[0];
 	printf(ANSI_BOLDWHITE ANSI_BLACK_BACKGROUND" 💀 MINISHELL "ANSI_RESET);
-    printf(ANSI_BLACK""ANSI_RESET);
+    printf(ANSI_BLACK ANSI_GREEN_BACKGROUND "" ANSI_RESET);
+	printf(ANSI_GREEN_BACKGROUND " %s " ANSI_RESET, user);
+    printf(ANSI_GREEN ANSI_BLUE_BACKGROUND "" ANSI_RESET);
+    printf(ANSI_BLUE_BACKGROUND " %s " ANSI_RESET, pwd);
+    printf(ANSI_BLUE "" ANSI_RESET);
 	input = readline(" ");
 	return (input);
 }

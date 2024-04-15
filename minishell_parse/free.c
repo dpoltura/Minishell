@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:17:40 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 13:18:14 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:09:18 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ void	free_split(char **split)
 	free(split);
 }
 
+void	free_env(t_env **env)
+{
+	t_env	*current;
+
+	current = *env;
+	while (current)
+	{
+		*env = (*env)->next;
+		free(current->key);
+		free_split(current->value);
+		free(current);
+		current = *env;
+	}
+}
+
 void	free_data(t_data **data)
 {
 	t_data	*current;
@@ -38,8 +53,6 @@ void	free_data(t_data **data)
 		free(current->value);
 		free_split(current->arg);
 		free(current->path);
-		free(current->var);
-		free_split(current->env);
 		free(current);
 		current = *data;
 	}

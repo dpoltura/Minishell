@@ -6,32 +6,11 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 13:19:55 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:42:09 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
-
-static void	print_env(t_data *data)
-{
-	int		i;
-
-	i = 0;
-	if (!data || !data->env)
-		return ;
-	printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"var "ANSI_RED"= "ANSI_WHITE"%s\n\t", data->var);
-	printf(ANSI_BLUE"char "ANSI_RED"**"ANSI_CYAN"env "ANSI_RED"= "ANSI_WHITE);
-	while (data->env[i])
-	{
-		printf("%s", data->env[i]);
-		i++;
-		if (data->env[i])
-			printf(", ");
-		else
-			printf(";");
-	}
-	printf("\n");
-}
 
 static void	print_arg(t_data *data)
 {
@@ -115,8 +94,7 @@ static void	print_data(t_data *data)
 		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"value "ANSI_RED"= "ANSI_WHITE"%s;\n\t", data->value);
 		print_arg(data);
 		printf(ANSI_GREEN"t_token "ANSI_CYAN"token "ANSI_RED"= "ANSI_WHITE"%s;\n\t", token);
-		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"path "ANSI_RED"= "ANSI_WHITE"%s;\n\t", data->path);
-		print_env(data);
+		printf(ANSI_BLUE"char "ANSI_RED"*"ANSI_CYAN"path "ANSI_RED"= "ANSI_WHITE"%s;\n", data->path);
 		printf(ANSI_YELLOW"}\n"ANSI_WHITE);
 		data = data->next;
 		if (!data)
@@ -131,17 +109,24 @@ int		main(int argc, char **argv, char **envp)
 	(void)argc;
 	argv = NULL;
 	
-	t_data	*data;
+	t_env	*env;
 	char	*input;
+	t_data	*data;
 
+	env = NULL;
+	init_env(&env);
+	env_copy(env, envp);
 	data = NULL;
 	while (1)
 	{
 		while (1)
 		{
-			input = ft_readline();
+			input = ft_readline(env);
 			if (!input || !input[0])
+			{
+				free(input);
 				break ;
+			}
 			init_data(&data);
 			split_input(input, data);
 			free(input);
@@ -154,7 +139,6 @@ int		main(int argc, char **argv, char **envp)
 			token_outfile(data);
 			if (check_first(data) != 1)
 				break ;
-			init_env(data, envp);
 			
 			print_data(data);
 			free_data(&data);

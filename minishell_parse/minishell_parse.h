@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 12:59:11 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:42:01 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef enum	e_token
     OUTFILE,
 }	t_token;
 
+typedef struct  s_env
+{
+    char    *key;
+    char    **value;
+    struct s_env    *next;
+}   t_env;
+
 typedef struct	s_data
 {
     int		index;
@@ -51,8 +58,6 @@ typedef struct	s_data
     char	**arg;
     t_token	token;
     char    *path;
-    char    *var;
-    char    **env;
     struct s_data	*next;
 }	t_data;
 
@@ -73,7 +78,9 @@ void	free_split(char **split);
 void	token_infile(t_data *data);
 void	token_outfile(t_data *data);
 int     check_first(t_data *data);
-char	*ft_readline(void);
-void	init_env(t_data *data, char **envp);
+char	*ft_readline(t_env *env);
+void	env_copy(t_env *env, char **envp);
+void	free_env(t_env **env);
+void	init_env(t_env **env);
 
 #endif

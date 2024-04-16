@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 18:42:31 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:44:25 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int		main(int argc, char **argv, char **envp)
 			index_data(data);
 			if (token_data(data) != 1)
 				break ;
+			token_data(data);
 			get_path(data);
 			token_infile(data);
 			token_outfile(data);

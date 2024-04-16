@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:51:14 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 18:44:12 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:46:27 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	arg_to_cmd(t_data *data)
 	while (data)
 	{
 		i = 1;
-		while (data->next && data->next->token != ARG || data->next->token != INFILE)
+		while (data->next && data->next->token != ARG && data->next->token != INFILE)
 			data = data->next;
 		if (!data || !data->next)
 			return ;

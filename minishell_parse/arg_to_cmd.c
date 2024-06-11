@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:51:14 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/16 10:46:27 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:23:32 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	arg_to_cmd(t_data *data)
 	while (data)
 	{
 		i = 1;
-		while (data->next && data->next->token != ARG && data->next->token != INFILE)
+		while (data->next && data->next->token != ARG && data->next->token != INFILE && data->next->token != CMD)
 			data = data->next;
 		if (!data || !data->next)
 			return ;
@@ -35,7 +35,7 @@ void	arg_to_cmd(t_data *data)
 		cmd->arg = malloc(sizeof(char *) * 255);
 		cmd->arg[0] = ft_strdup(cmd->value);
 		tmp = data->next;
-		while (tmp && (tmp->token == ARG || tmp->token == INFILE))
+		while (tmp && (tmp->token == ARG || tmp->token == INFILE || tmp->token == CMD))
 		{
 			cmd->arg[i] = ft_strdup(tmp->value);
 			tmp = data->next->next;

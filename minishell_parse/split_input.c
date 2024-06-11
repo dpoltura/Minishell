@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:20:25 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 17:47:20 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:38:55 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	split_input(char *input, t_data *data)
 			i = if_r_chev(input, data, i, j);
 		else if (input[i] == '$')
 			i = if_dollar(input, data, i, j);
+		while (input[i] == ' ')
+			i++;
 		if (input[i])
 		{
 			init_data(&data->next);

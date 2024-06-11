@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:50:29 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/15 17:50:08 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:26:40 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,7 @@ int	token_data(t_data *data)
 	token_env(data);
 	token_exit(data);
 	token_cmd(data);
+	token_here_doc(data);
 	return (1);
 }
 
@@ -346,6 +347,30 @@ void	token_outfile(t_data *data)
 		if ((cursor->token == R_CHEV || cursor->token == D_R_CHEV)
 			&& (cursor->next && cursor->next->token == CMD && !cursor->next->path))
 			cursor->next->token = OUTFILE;
+		cursor = cursor->next;
+	}
+}
+
+void	token_here_doc(t_data *data)
+{
+	t_data	*cursor;
+	
+	cursor = data;
+	if (cursor->token == D_L_CHEV && cursor->next)
+	{
+		cursor->token = HERE_DOC;
+		cursor->next->token = END_HERE_DOC;
+		return ;
+	}
+	while (cursor)
+	{
+		if (ft_strcmp(cursor->value, "here_doc") && cursor->next
+			&& cursor->next->token == D_R_CHEV && cursor->next->next)
+		{
+			cursor->token = HERE_DOC;
+			cursor->next->next->token = END_HERE_DOC;
+			cursor = cursor->next->next;
+		}
 		cursor = cursor->next;
 	}
 }

@@ -6,58 +6,41 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:17:00 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/09 13:17:19 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/10 10:15:25 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_parse.h"
 
-static int	ft_echo_arg(char *src, char *cmp)
+static void	print_echo(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
 
-	i = 0;
-	j = 0;
-	while (src[i] && cmp[j] && src[i] == cmp[j])
+	i = 1;
+	if (ft_strcmp(data->arg[1], "-n"))
+		i = 2;
+	while (data->arg[i])
 	{
+		printf("%s", data->arg[i]);
 		i++;
-		j++;
+		if (data->arg[i])
+			printf(" ");
 	}
-	if (!cmp[j])
-	{
-		while (src[i] == 'n')
-			i++;
-		if (!src[i])
-			return (1);
-	}
-	return (0);
 }
 
-void	echo(t_data **data)
+void	ft_echo(t_data *data)
 {
-	t_split	*cursor;
-	int	i;
-	char	c[1];
-
-	cursor = (*data)->split_input;
-	c[0] = '\n';
-	while (cursor && !ft_strcmp(cursor->content, "echo"))
-		cursor = cursor->next;
-	if (!cursor)
+	if (!data->arg[1])
+	{
+		printf("\n");
 		return ;
-	else if (cursor)
-		cursor = cursor->next;
-	if (cursor && ft_echo_arg(cursor->content, "-n"))
-	{
-		c[0] = 0;
-		cursor = cursor->next;
 	}
-	i = 0;
-	while (cursor && cursor->content[i])
+	else if (ft_strcmp(data->arg[1], "-n"))
 	{
-		write(1, &cursor->content[i], 1);
-		i++;
+		print_echo(data);
+		return ;
 	}
-	write(1, &c[0], 1);
+	print_echo(data);
+	printf("\n");
 }
+

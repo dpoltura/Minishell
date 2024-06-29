@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execve.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 15:03:17 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/06/10 10:11:22 by dpoltura         ###   ########.fr       */
+/*   Created: 2024/04/09 11:17:00 by dpoltura          #+#    #+#             */
+/*   Updated: 2024/06/10 10:15:25 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_parse.h"
 
-void	ft_execve(t_data *data, char **envp)
+static void	print_echo(t_data *data)
 {
-	int	pid;
+	int		i;
 
-	while (data)
+	i = 1;
+	if (ft_strcmp(data->arg[1], "-n"))
+		i = 2;
+	while (data->arg[i])
 	{
-		pid = fork();
-		if (!pid && data->token == CMD)
-			execve(data->path, data->arg, envp);
-		else if (!pid && data->token == ECHO)
-			ft_echo(data);
-		waitpid(pid, NULL, 0);
-		data = data->next;
+		printf("%s", data->arg[i]);
+		i++;
+		if (data->arg[i])
+			printf(" ");
 	}
 }
+
+void	ft_echo(t_data *data)
+{
+	if (!data->arg[1])
+	{
+		printf("\n");
+		return ;
+	}
+	else if (ft_strcmp(data->arg[1], "-n"))
+	{
+		print_echo(data);
+		return ;
+	}
+	print_echo(data);
+	printf("\n");
+}
+

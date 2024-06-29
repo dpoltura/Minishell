@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduriez <aduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 13:26:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/16 13:07:07 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:21:48 by aduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_parse.h"
+#include "minishell.h"
 
 void	get_path(t_data *data)
 {

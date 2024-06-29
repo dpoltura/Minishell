@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:08:04 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/16 12:27:20 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:58:51 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ static char	*print_token(int token)
 		name = strdup("INFILE");
     if (token == 19)
 		name = strdup("OUTFILE");
+	if (token == 20)
+		name = strdup("HERE_DOC");
+	if (token == 21)
+		name = strdup("END_HERE_DOC");
 	return (name);
 }
 
@@ -130,16 +134,22 @@ int		main(int argc, char **argv, char **envp)
 				break ;
 			}
 			add_history(input);
+			if (count_quotes(input) % 2 != 0)
+			{
+				free(input);
+				break;
+			}
+			input = remove_quotes(input);
 			init_data(&data);
 			split_input(input, data);
 			free(input);
 			index_data(data);
 			if (token_data(data) != 1)
 				break ;
-			token_data(data);
 			get_path(data);
 			token_infile(data);
 			token_outfile(data);
+			token_here_doc(data);
 			arg_to_cmd(data);
 			if (check_first(data) != 1)
 				break ;

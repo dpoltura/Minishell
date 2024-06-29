@@ -6,7 +6,7 @@
 /*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:05:05 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/04/16 12:27:32 by dpoltura         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:58:41 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef enum	e_token
     EXIT,
     INFILE,
     OUTFILE,
+    HERE_DOC,
+    END_HERE_DOC,
 }	t_token;
 
 typedef struct  s_env
@@ -86,5 +88,9 @@ void	env_copy(t_env *env, char **envp);
 void	free_env(t_env **env);
 void	init_env(t_env **env);
 void	ft_execve(t_data *data, char **envp);
+void	ft_echo(t_data *data);
+int     count_quotes(char *input);
+char    *remove_quotes(char *input);
+void	token_here_doc(t_data *data);
 
 #endif

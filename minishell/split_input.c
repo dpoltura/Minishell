@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduriez <aduriez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dpoltura <dpoltura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:20:25 by dpoltura          #+#    #+#             */
-/*   Updated: 2024/06/26 19:25:58 by aduriez          ###   ########.fr       */
+/*   Updated: 2024/06/29 18:04:21 by dpoltura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,22 @@ static int	if_dollar(char *input, t_data *data, int i, int j)
 	return (i);
 }
 
+static int	if_echo(char *input, t_data *data, int i, int j)
+{
+	char	quote;
+
+	quote = input[i];
+	i++;
+	while (input[i] && input[i] != quote)
+	{
+		data->value[j] = input[i];
+		i++;
+		j++;
+	}
+	data->value[j] = '\0';
+	return (i);
+}
+
 void	split_input(char *input, t_data *data)
 {
 	int i;
@@ -113,7 +129,9 @@ void	split_input(char *input, t_data *data)
 			exit(2);
 		while (input[i] == ' ')
 			i++;
-		if (input[i] && input[i] != 34 && input[i] != 39 && input[i] != '|'
+		if (data->prev && ft_strcmp(data->prev->value, "echo") && (input[i] == 34 || input[i] == 39))
+			i = if_echo(input, data, i, j);
+		else if (input[i] && input[i] != 34 && input[i] != 39 && input[i] != '|'
 			&& input[i] != '<' && input[i] != '>' && input[i] != '$'
 			&& input[i] != ' ')
 			i = if_not_limiter(input, data, i, j);
